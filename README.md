@@ -1,5 +1,27 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+# 🦁 Columbia Dorms – LionDorm
+
+A full-stack web application where Columbia students can browse, rate, and review on-campus dorms. Built with Next.js, TypeScript, Tailwind CSS, and Supabase/PostgreSQL.
+
+## ✨ Features
+
+- View detailed pages for each dorm with images, descriptions, and reviews
+- Submit and display user-generated dorm reviews
+- Calculate and display average ratings out of 5 stars
+- Fully responsive UI styled with Tailwind CSS
+- Supabase backend with PostgreSQL for data storage
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/liemma/columbia-dorms.git
+cd columbia-dorms
+
+
 ## Getting Started
 
 First, run the development server:

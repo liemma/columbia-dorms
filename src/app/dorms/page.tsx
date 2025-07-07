@@ -4,7 +4,11 @@ import Link from 'next/link'
 import { DormCard } from '@/components/DormCard'
 import { DormWithReviews } from '@/lib/supabase'
 
-export default async function DormsPage() {
+interface DormsPageProps {
+  searchParams: { q?: string }
+}
+
+export default async function DormsPage({ searchParams }: DormsPageProps) {
   const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -18,8 +22,10 @@ export default async function DormsPage() {
     }
   )
   
-  // Fetch all dorms with their reviews and calculate average ratings
-  const { data: dorms, error } = await supabase
+  const searchQuery = searchParams.q
+  
+  // Build the query with optional search filter
+  let query = supabase
     .from('dorms')
     .select(`
       *,
@@ -32,7 +38,13 @@ export default async function DormsPage() {
         user_id
       )
     `)
-    .order('name')
+  
+  // Apply search filter if query exists
+  if (searchQuery) {
+    query = query.or(`name.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%,location.ilike.%${searchQuery}%`)
+  }
+  
+  const { data: dorms, error } = await query.order('name')
 
   if (error) {
     console.error('Error fetching dorms:', error)
@@ -41,7 +53,9 @@ export default async function DormsPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-3xl font-bold text-gray-900 mb-8">Columbia University Dorms</h1>
-            <p className="text-red-600">Error loading dorms. Please try again later.</p>
+            <p className="text-lg text-red-600 mb-8">
+              Error loading dorms. Please try again later.
+            </p>
           </div>
         </div>
       </div>

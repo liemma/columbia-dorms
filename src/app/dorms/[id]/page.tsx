@@ -279,7 +279,7 @@ const supabase = createBrowserClient(
             {/* Add Review Form */}
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">Write a Review</h3>
-              <ReviewForm dormId={dorm.id} />
+              <ReviewForm dormId={dorm.id} onReviewSubmitted={handleReviewSubmitted} />
             </div>
           </div>
         </div>

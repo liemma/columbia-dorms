@@ -1,28 +1,10 @@
 import Link from "next/link";
-import { Star, MapPin, Users, Building2 } from "lucide-react";
+import { Star, MapPin, Users, Building2, Search } from "lucide-react";
+import SearchForm from "../components/SearchForm";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      {/* Header */}
-      <header className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Building2 className="h-8 w-8 text-blue-600" />
-              <h1 className="text-2xl font-bold text-gray-900">Columbia Dorms</h1>
-            </div>
-            <nav className="hidden md:flex space-x-8">
-              <Link href="/dorms" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Browse Dorms
-              </Link>
-              <Link href="/about" className="text-gray-700 hover:text-blue-600 transition-colors">
-                About
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -37,6 +19,12 @@ export default function Home() {
             Discover honest reviews, ratings, and insights from real Columbia students 
             to help you choose the best dorm for your college experience.
           </p>
+          
+          {/* Search Form */}
+          <div className="mb-8 max-w-md mx-auto">
+            <SearchForm />
+          </div>
+          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/dorms"
